@@ -1,0 +1,23 @@
+.header {
+  width: 100%;
+  background-color: #ED5E42;
+  height: 3.5rem;
+
+}
+
+.header .content {
+  height: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: calc(1200px - 1rem);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.logo {
+  text-transform: uppercase;
+  font-family: SegoeUIBold, sans-serif;
+  color: #FFFFFF;
+  font-size: 1.5rem;
+}

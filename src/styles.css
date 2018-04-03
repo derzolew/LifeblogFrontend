@@ -1,8 +1,10 @@
-html {
+@import "./assets/fonts/fonts.css";
+
+* {
   box-sizing: border-box;
-  max-width: 100%;
-  width: 100%;
-  height: 100%;
+}
+
+html {
   overflow-x: hidden;
   font-size: 14px;
 }
@@ -16,4 +18,28 @@ html {
 body {
   margin: 0;
   padding: 0;
+}
+
+.button {
+  padding: 5px 16px;
+  outline: none;
+  border-radius: 3px;
+  font-family: SegoeUISemiBold, sans-serif;
+  font-size: 0.8rem;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button--orange {
+  background-color: #ED5E42;
+  color: #FFFFFF;
+  border: 1px solid #FFFFFF;
+}
+
+.button--transparent {
+  background-color: transparent;
+  color: #ED5E42;
+  border: 1px solid #ED5E42;
 }
