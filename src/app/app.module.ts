@@ -5,11 +5,12 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {CoreModule} from './core/core.module';
 import { RouterModule, Routes } from '@angular/router';
-import { HomepageComponent } from './blog/components/homepage/homepage.component';
 import { BlogModule } from './blog/blog.module';
 
 const appRoutes: Routes = [
-  {path: '', component: HomepageComponent}
+  {path: '', redirectTo: 'blog', pathMatch: 'full'},
+  {path: 'blog', loadChildren: './blog/blog.module#BlogModule'},
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({
