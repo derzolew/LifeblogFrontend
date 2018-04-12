@@ -18,7 +18,8 @@
   height: 3.75rem;
   text-transform: uppercase;
   border-bottom: 1px solid #EDEFF0;
-  color: rgba(0,0,0,.87);
+  background-color: #ED5E42;
+  color: #FFFFFF;
   font-family: SegoeUISemiBold, sans-serif;
 }
 
