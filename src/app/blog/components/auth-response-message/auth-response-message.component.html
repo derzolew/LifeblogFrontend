@@ -1,0 +1,18 @@
+<app-auth-container [header]="labelText">
+  <div class="container">
+    <div class="img--container">
+      <img [src]="imageLink" alt="">
+    </div>
+
+    <div class="body">
+      {{bodyText}}
+    </div>
+
+  </div>
+
+  <div class="button--container">
+    <button type="submit" class="button button--transparent button--register" [routerLink]="[link]">
+      {{buttonText}}
+    </button>
+  </div>
+</app-auth-container>

@@ -46,6 +46,7 @@ import { PostComponent } from './components/post/post.component';
 import { AuthContainerComponent } from './components/auth-container/auth-container.component';
 import { CoreModule } from '../core/core.module';
 import { SigninComponent } from './components/signin/signin.component';
+import { AuthResponseMessageComponent } from './components/auth-response-message/auth-response-message.component';
 
 const blogRoutes: Routes = [
   {
@@ -106,7 +107,8 @@ const blogRoutes: Routes = [
     PostsAllComponent,
     PostComponent,
     AuthContainerComponent,
-    SigninComponent
+    SigninComponent,
+    AuthResponseMessageComponent,
   ]
 })
 export class BlogModule {

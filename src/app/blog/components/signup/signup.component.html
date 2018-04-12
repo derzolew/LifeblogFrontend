@@ -1,4 +1,4 @@
-<app-auth-container [header]="'Sign up'">
+<app-auth-container *ngIf="!isRegistrationComplete" [header]="'Sign up'">
   <form #f="ngForm" (submit)="f.form.valid && onSubmit()">
     <mat-form-field>
       <input matInput placeholder="Enter your email" [formControl]="email" [(ngModel)]="user.email" required>
@@ -16,7 +16,7 @@
       <mat-error *ngIf="!confirm.valid">Password mismatch</mat-error>
     </mat-form-field>
 
-    <div>
+    <div class="button--container">
       <button type="submit" class="button button--transparent button--register" [disabled]="isLoading">
         <mat-spinner *ngIf="isLoading" [diameter]="16"></mat-spinner>
         <span *ngIf="!isLoading">Register</span>
@@ -25,5 +25,12 @@
   </form>
 </app-auth-container>
 
-
+<app-auth-response-message
+  *ngIf="isRegistrationComplete"
+  [imageLink]="'../../../../assets/images/check-mark.svg'"
+  [bodyText]="'You have successfully registered!'"
+  [buttonText]="'OK'"
+  [labelText]="'Success!'"
+  [link]="'/'"
+></app-auth-response-message>
 

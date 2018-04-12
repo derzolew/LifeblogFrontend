@@ -1,0 +1,25 @@
+.button--register {
+  width: 100%;
+  height: 2.625rem;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.button--container {
+  padding: 1rem 0;
+}
+
+.img--container {
+  margin: 1rem 0;
+}
+
+.body {
+  margin-bottom: 1rem;
+}

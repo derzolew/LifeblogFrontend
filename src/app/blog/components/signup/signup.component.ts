@@ -14,6 +14,7 @@ export class SignupComponent implements OnInit {
   user = new UserCredentials();
   confirmPassword = '';
   isLoading = false;
+  isRegistrationComplete = false;
 
   constructor(private userService: UserService) { }
 
@@ -30,6 +31,7 @@ export class SignupComponent implements OnInit {
     this.userService.signUp(this.user).subscribe((response: User) => {
       console.log(response);
       this.isLoading = false;
+      this.isRegistrationComplete = true;
     }, (error) => {
       this.isLoading = false;
     });

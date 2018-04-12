@@ -10,7 +10,7 @@
       <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 
-    <div>
+    <div class="button--container">
       <button type="submit" class="button button--transparent button--login" [disabled]="isLoading">
         <mat-spinner *ngIf="isLoading" [diameter]="16"></mat-spinner>
         <span *ngIf="!isLoading">Login</span>
