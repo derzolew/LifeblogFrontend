@@ -4,6 +4,8 @@ import { UserService } from '../../../core/service/user.service';
 import { UserCredentials } from '../../../core/model/user.model';
 import { OAuthTokenResponse } from '../../../core/model/oauth.model';
 import { TokenService } from '../../../core/service/token.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -15,8 +17,11 @@ export class SigninComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   user = new UserCredentials();
   isLoading = false;
+  loginError = false;
 
-  constructor(private userService: UserService, private tokenService: TokenService) { }
+  constructor(private userService: UserService,
+              private router: Router,
+              private tokenService: TokenService) { }
 
   ngOnInit() {
   }
@@ -31,7 +36,11 @@ export class SigninComponent implements OnInit {
     this.userService.authorize(this.user).subscribe((oAuthTokenResponse: OAuthTokenResponse) => {
       this.isLoading = false;
       this.tokenService.saveTokensToLocalStorage(oAuthTokenResponse);
-    }, (error) => {
+      this.router.navigate(['/']);
+    }, (error: HttpErrorResponse) => {
+      if (error.status === 400) {
+        this.loginError = true;
+      }
       this.isLoading = false;
     });
   }

@@ -1,4 +1,5 @@
 <app-auth-container [header]="'Sign in'">
+  <app-warning-block *ngIf="loginError" [warningMessage]="'Email or password is incorrect'"></app-warning-block>
   <form #f="ngForm" (submit)="f.form.valid && onSubmit()">
     <mat-form-field>
       <input matInput placeholder="Enter your email" [formControl]="email" [(ngModel)]="user.email" required>
