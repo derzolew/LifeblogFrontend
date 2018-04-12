@@ -15,7 +15,7 @@
   padding: 0 1rem;
 }
 
-.logo {
+.logo > span {
   text-transform: uppercase;
   font-family: SegoeUIBold, sans-serif;
   color: #FFFFFF;
