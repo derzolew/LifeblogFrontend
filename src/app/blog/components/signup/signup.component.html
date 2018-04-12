@@ -7,7 +7,7 @@
 
     <mat-form-field>
       <input matInput placeholder="Enter your password" class="form-control" minlength="8" maxlength="20" type="password" name="password" #password="ngModel" [(ngModel)]="user.password" required>
-      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      <mat-error *ngIf="!password.valid">Provide a password please</mat-error>
     </mat-form-field>
 
     <mat-form-field>
