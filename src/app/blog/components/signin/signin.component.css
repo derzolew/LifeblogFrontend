@@ -3,7 +3,7 @@ mat-form-field {
   padding-bottom: 0.75rem;
 }
 
-.button--register {
+.button--login {
   width: 100%;
   height: 2.625rem;
   display: flex;

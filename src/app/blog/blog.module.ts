@@ -43,11 +43,15 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostsAllComponent } from './components/posts-all/posts-all.component';
 import { PostComponent } from './components/post/post.component';
+import { AuthContainerComponent } from './components/auth-container/auth-container.component';
+import { CoreModule } from '../core/core.module';
+import { SigninComponent } from './components/signin/signin.component';
 
 const blogRoutes: Routes = [
   {
     path: '', component: HomepageComponent, children: [
       {path: 'signup', component: SignupComponent},
+      {path: 'signin', component: SigninComponent},
       {path: '', component: PostsAllComponent}
     ]
   }
@@ -60,6 +64,7 @@ const blogRoutes: Routes = [
     PageCommonModule,
     FormsModule,
     ReactiveFormsModule,
+    CoreModule,
     RouterModule.forChild(blogRoutes),
     CdkTableModule,
     MatAutocompleteModule,
@@ -99,7 +104,9 @@ const blogRoutes: Routes = [
     HomepageComponent,
     SignupComponent,
     PostsAllComponent,
-    PostComponent
+    PostComponent,
+    AuthContainerComponent,
+    SigninComponent
   ]
 })
 export class BlogModule {

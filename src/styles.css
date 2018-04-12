@@ -11,9 +11,35 @@ html {
   font-size: 14px;
 }
 
+.col {
+  width: 100%;
+}
+
 @media (min-width: 576px) {
   html {
     font-size: 16px;
+  }
+
+  .col {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .col {
+    width: 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .col {
+    width: 33.3%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .col {
+    width: 25%;
   }
 }
 
@@ -26,6 +52,12 @@ body {
   padding: 5px 16px;
   outline: none;
   border-radius: 3px;
+  font-family: SegoeUISemiBold, sans-serif;
+  font-size: 0.8rem;
+  transition: .2s;
+}
+
+.button span {
   font-family: SegoeUISemiBold, sans-serif;
   font-size: 0.8rem;
 }
@@ -44,4 +76,20 @@ body {
   background-color: transparent;
   color: #ED5E42;
   border: 1px solid #ED5E42;
+}
+
+.button--transparent:hover {
+  background-color: #ED5E42;
+  color: #FFFFFF;
+  border: 1px solid #FFFFFF;
+}
+
+.button--transparent:disabled {
+  background-color: transparent;
+  color: #ED5E42;
+  border: 1px solid #ED5E42;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #ED5E42;
 }

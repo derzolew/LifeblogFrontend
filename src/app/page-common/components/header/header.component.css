@@ -15,6 +15,14 @@
   padding: 0 1rem;
 }
 
+.logo {
+  outline: 0;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
+
 .logo > span {
   text-transform: uppercase;
   font-family: SegoeUIBold, sans-serif;

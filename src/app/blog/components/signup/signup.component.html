@@ -1,8 +1,29 @@
-<div class="example-container">
+<app-auth-container [header]="'Sign up'">
   <form #f="ngForm" (submit)="f.form.valid && onSubmit()">
     <mat-form-field>
-      <input matInput placeholder="Enter your email" [formControl]="email" required>
+      <input matInput placeholder="Enter your email" [formControl]="email" [(ngModel)]="user.email" required>
       <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Enter your password" class="form-control" minlength="8" maxlength="20" type="password" name="password" #password="ngModel" [(ngModel)]="user.password" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Confirm password" class="form-control" appValidateEqual="password" name="confirm" #confirm="ngModel"
+             type="password" [(ngModel)]="confirmPassword" required>
+      <mat-error *ngIf="!confirm.valid">Password mismatch</mat-error>
+    </mat-form-field>
+
+    <div>
+      <button type="submit" class="button button--transparent button--register" [disabled]="isLoading">
+        <mat-spinner *ngIf="isLoading" [diameter]="16"></mat-spinner>
+        <span *ngIf="!isLoading">Register</span>
+      </button>
+    </div>
   </form>
-</div>
+</app-auth-container>
+
+
+

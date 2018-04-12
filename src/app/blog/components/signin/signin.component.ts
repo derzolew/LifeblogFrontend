@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { User, UserCredentials } from '../../../core/model/user.model';
 import { UserService } from '../../../core/service/user.service';
+import { UserCredentials } from '../../../core/model/user.model';
+import { OAuthTokenResponse } from '../../../core/model/oauth.model';
+import { TokenService } from '../../../core/service/token.service';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  selector: 'app-signin',
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.css']
 })
-export class SignupComponent implements OnInit {
+export class SigninComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);
   user = new UserCredentials();
-  confirmPassword = '';
   isLoading = false;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private tokenService: TokenService) { }
 
   ngOnInit() {
   }
@@ -27,11 +28,12 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     this.isLoading = true;
-    this.userService.signUp(this.user).subscribe((response: User) => {
-      console.log(response);
+    this.userService.authorize(this.user).subscribe((oAuthTokenResponse: OAuthTokenResponse) => {
       this.isLoading = false;
+      this.tokenService.saveTokensToLocalStorage(oAuthTokenResponse);
     }, (error) => {
       this.isLoading = false;
     });
   }
+
 }
