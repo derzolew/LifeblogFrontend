@@ -38,7 +38,7 @@ export class SigninComponent implements OnInit {
       this.tokenService.saveTokensToLocalStorage(oAuthTokenResponse);
       this.router.navigate(['/']);
     }, (error: HttpErrorResponse) => {
-      if (error.status === 400) {
+      if (error.status === 400 || error.status === 500) {
         this.loginError = true;
       }
       this.isLoading = false;
