@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { User, UserCredentials } from '../../../core/model/user.model';
 import { UserService } from '../../../core/service/user.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
@@ -15,6 +16,7 @@ export class SignupComponent implements OnInit {
   confirmPassword = '';
   isLoading = false;
   isRegistrationComplete = false;
+  isUserExistError = false;
 
   constructor(private userService: UserService) { }
 
@@ -29,10 +31,12 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     this.isLoading = true;
     this.userService.signUp(this.user).subscribe((response: User) => {
-      console.log(response);
       this.isLoading = false;
       this.isRegistrationComplete = true;
-    }, (error) => {
+    }, (error: HttpErrorResponse) => {
+      if (error.status === 409) {
+        this.isUserExistError = true;
+      }
       this.isLoading = false;
     });
   }

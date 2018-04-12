@@ -37,7 +37,7 @@ export class ApiService {
 
   private handleError(error): ErrorObservable {
     console.log('REQUEST ERROR', error);
-    return Observable.throw(error);
+    return ErrorObservable.create(error);
   }
 
   public get(url: string,

@@ -6,6 +6,7 @@ import { UserService } from './service/user.service';
 import { BlogService } from './service/blog.service';
 import { EqualValidator } from './directives/validate-equal';
 import { HttpClientModule } from '@angular/common/http';
+import { WarningBlockComponent } from './components/warning-block/warning-block.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   declarations: [
-    EqualValidator
+    EqualValidator,
+    WarningBlockComponent
   ],
   providers: [
     ApiService,
@@ -22,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     BlogService
   ],
   exports: [
-    EqualValidator
+    EqualValidator,
+    WarningBlockComponent
   ]
 })
 export class CoreModule {
