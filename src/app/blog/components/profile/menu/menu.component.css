@@ -1,0 +1,32 @@
+.menu--container {
+  display: flex;
+  justify-content: center;
+}
+
+.profile--menu {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid rgba(206, 214, 222, 0.5);;
+}
+
+.profile--menu > li {
+  padding: 12px;
+  transition: .2s;
+  outline: 0;
+}
+
+.profile--menu > li:not(:last-child) {
+  padding-right: 16px;
+}
+
+.profile--menu > li:hover {
+  cursor: pointer;
+  color: #248CD6;
+}
+
+.profile--item__active {
+  color: #248CD6;
+  border-bottom: 1px solid #248CD6;
+}

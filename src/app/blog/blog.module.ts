@@ -37,7 +37,7 @@ import {
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
-  MatTooltipModule,
+  MatTooltipModule
 } from '@angular/material';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -48,13 +48,24 @@ import { CoreModule } from '../core/core.module';
 import { SigninComponent } from './components/signin/signin.component';
 import { AuthResponseMessageComponent } from './components/auth-response-message/auth-response-message.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { MenuComponent } from './components/profile/menu/menu.component';
+import { HomeComponent } from './components/profile/home/home.component';
+import { MakePostComponent } from './components/profile/make-post/make-post.component';
+import { MyPostsComponent } from './components/profile/my-posts/my-posts.component';
 
 const blogRoutes: Routes = [
   {
     path: '', component: HomepageComponent, children: [
       {path: 'signup', component: SignupComponent},
       {path: 'signin', component: SigninComponent},
-      {path: 'profile', component: ProfileComponent},
+      {path: 'profile', pathMatch: 'full',  redirectTo: 'profile/home'},
+      {
+        path: 'profile', component: ProfileComponent, children: [
+          {path: 'home', component: HomeComponent},
+          {path: 'make-post', component: MakePostComponent},
+          {path: 'my-posts', component: MyPostsComponent}
+        ]
+      },
       {path: '', component: PostsAllComponent}
     ]
   }
@@ -101,7 +112,7 @@ const blogRoutes: Routes = [
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule,
+    MatTooltipModule
   ],
   declarations: [
     HomepageComponent,
@@ -112,6 +123,10 @@ const blogRoutes: Routes = [
     SigninComponent,
     AuthResponseMessageComponent,
     ProfileComponent,
+    MenuComponent,
+    HomeComponent,
+    MakePostComponent,
+    MyPostsComponent
   ]
 })
 export class BlogModule {
