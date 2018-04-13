@@ -1,0 +1,45 @@
+.container {
+  max-width: calc(1200px - 1rem);
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+}
+
+.image--container {
+  width: 300px;
+  height: 300px;
+  margin-right: 3rem;
+  flex-shrink: 0;
+  background-color: #4063BD;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.label {
+  font-family: SegoeUISemiBold, sans-serif;
+  margin-right: 0.75rem;
+  min-width: 100px;
+}
+
+.name {
+  font-family: SegoeUIBold, sans-serif;
+  font-size: 2.5rem;
+}
+
+.description {
+}
+
+.description > pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
