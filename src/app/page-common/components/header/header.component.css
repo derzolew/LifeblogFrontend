@@ -1,7 +1,7 @@
 .header {
   width: 100%;
-  background-color: #ED5E42;
-  height: 3.5rem;
+  background: radial-gradient(1044.57px at 13.78% 559.37%, #34D1C8 0%, #248CD6 100%), linear-gradient(90deg, #4063BD 0%, #248CD6 100%);
+  height: 4rem;
 
 }
 

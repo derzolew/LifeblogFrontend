@@ -47,12 +47,14 @@ import { AuthContainerComponent } from './components/auth-container/auth-contain
 import { CoreModule } from '../core/core.module';
 import { SigninComponent } from './components/signin/signin.component';
 import { AuthResponseMessageComponent } from './components/auth-response-message/auth-response-message.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const blogRoutes: Routes = [
   {
     path: '', component: HomepageComponent, children: [
       {path: 'signup', component: SignupComponent},
       {path: 'signin', component: SigninComponent},
+      {path: 'profile', component: ProfileComponent},
       {path: '', component: PostsAllComponent}
     ]
   }
@@ -109,6 +111,7 @@ const blogRoutes: Routes = [
     AuthContainerComponent,
     SigninComponent,
     AuthResponseMessageComponent,
+    ProfileComponent,
   ]
 })
 export class BlogModule {

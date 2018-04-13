@@ -66,30 +66,30 @@ body {
   cursor: pointer;
 }
 
-.button--orange {
-  background-color: #ED5E42;
+.button--blue {
+  background-color: #248CD6;
   color: #FFFFFF;
   border: 1px solid #FFFFFF;
 }
 
 .button--transparent {
   background-color: transparent;
-  color: #ED5E42;
-  border: 1px solid #ED5E42;
+  color: #248CD6;
+  border: 1px solid #248CD6;
 }
 
 .button--transparent:hover {
-  background-color: #ED5E42;
+  background-color: #248CD6;
   color: #FFFFFF;
   border: 1px solid #FFFFFF;
 }
 
 .button--transparent:disabled {
   background-color: transparent;
-  color: #ED5E42;
-  border: 1px solid #ED5E42;
+  color: #248CD6;
+  border: 1px solid #248CD6;
 }
 
 .mat-progress-spinner circle, .mat-spinner circle {
-  stroke: #ED5E42;
+  stroke: #248CD6;
 }

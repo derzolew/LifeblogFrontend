@@ -4,9 +4,14 @@
       <span>Lifeblog</span>
     </div>
 
-    <div class="container--buttons">
-      <button class="button button--orange" routerLink="/signup">Sign Up</button>
-      <button class="button button--orange" routerLink="/signin">Sign In</button>
+    <div class="container--buttons" *ngIf="!isAuthorized">
+      <button class="button button--blue" routerLink="/signup">Sign Up</button>
+      <button class="button button--blue" routerLink="/signin">Sign In</button>
+    </div>
+
+    <div class="container--buttons" *ngIf="isAuthorized">
+      <button class="button button--blue" routerLink="/profile">Profile</button>
+      <button class="button button--blue" routerLink="/" (click)="onLogout()">Log out</button>
     </div>
   </div>
 </div>

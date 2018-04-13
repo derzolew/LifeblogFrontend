@@ -18,7 +18,7 @@
   height: 3.75rem;
   text-transform: uppercase;
   border-bottom: 1px solid #EDEFF0;
-  background-color: #ED5E42;
+  background: radial-gradient(1044.57px at 13.78% 559.37%, #34D1C8 0%, #248CD6 100%), linear-gradient(90deg, #4063BD 0%, #248CD6 100%);
   color: #FFFFFF;
   font-family: SegoeUISemiBold, sans-serif;
 }

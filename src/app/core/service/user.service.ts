@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { ApiService, AuthorizationType } from './api.service';
 import { TokenService } from './token.service';
 import { Observable } from 'rxjs/Observable';
@@ -8,6 +8,8 @@ import { OAuthTokenResponse } from '../model/oauth.model';
 
 @Injectable()
 export class UserService {
+
+  public userAuthorizedEventEmitter = new EventEmitter<boolean>();
 
   constructor(private apiService: ApiService, private tokenService: TokenService) { }
 
@@ -26,5 +28,14 @@ export class UserService {
 
   public signUp(userCredentials: UserCredentials): Observable<User> {
     return this.apiService.post('/user/signup', AuthorizationType.NONE, userCredentials, null);
+  }
+
+  public isAuthorized(): boolean {
+    return !!this.tokenService.getTokenDetails();
+  }
+
+  public logout() {
+    this.tokenService.clearLocalStorage();
+    this.userAuthorizedEventEmitter.emit(true);
   }
 }

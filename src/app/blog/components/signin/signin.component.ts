@@ -37,6 +37,7 @@ export class SigninComponent implements OnInit {
       this.isLoading = false;
       this.tokenService.saveTokensToLocalStorage(oAuthTokenResponse);
       this.router.navigate(['/']);
+      this.userService.userAuthorizedEventEmitter.emit(true);
     }, (error: HttpErrorResponse) => {
       if (error.status === 400 || error.status === 500) {
         this.loginError = true;
