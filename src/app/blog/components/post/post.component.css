@@ -1,8 +1,19 @@
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+.avatar {
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+}
+
+.container--avatar {
+  overflow: hidden;
 }
 
 .example-card {
 
+}
+
+pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }

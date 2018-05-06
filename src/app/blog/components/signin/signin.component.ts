@@ -6,6 +6,8 @@ import { OAuthTokenResponse } from '../../../core/model/oauth.model';
 import { TokenService } from '../../../core/service/token.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Profile } from '../../../core/model/profile.model';
+import { ProfileService } from '../../../core/service/profile.service';
 
 @Component({
   selector: 'app-signin',
@@ -21,6 +23,7 @@ export class SigninComponent implements OnInit {
 
   constructor(private userService: UserService,
               private router: Router,
+              private profileService: ProfileService,
               private tokenService: TokenService) { }
 
   ngOnInit() {
@@ -49,9 +52,16 @@ export class SigninComponent implements OnInit {
 
   getAndSetCurrentUserInfo() {
     this.userService.getCurrentUserInfo().subscribe((user: User) => {
-      console.log(user);
       this.userService.saveUserInfoToLocalStorage(user);
+      this.getAndSaveProfileId();
     });
   }
 
+  getAndSaveProfileId() {
+    this.profileService.getCurrentUserProfile(this.userService.getUserInfoFromLocalStorage().id)
+      .subscribe((profile: Profile) => {
+        this.profileService.saveProfileIdToLocalStorage(profile.id);
+        console.log(profile);
+      });
+  }
 }

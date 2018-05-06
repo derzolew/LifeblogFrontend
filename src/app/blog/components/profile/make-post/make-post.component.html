@@ -1,3 +1,31 @@
-<p>
-  make-post works!
-</p>
+<div class="container">
+  <div class="title">Make your post here!</div>
+  <div class="content">
+    <div class="image--container">
+      <img *ngIf="getImageUrl()" [src]="getImageUrl()" class="image">
+      <input class="upload" type="file" accept="image/*" (change)="onPhotoUpload($event)">
+    </div>
+    <form #f="ngForm" class="full-width" (submit)="f.form.valid && onMakePost()">
+      <div class="row">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Title" [formControl]="title" [(ngModel)]="post.title" required>
+          <mat-error *ngIf="title.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="full-width">
+          <textarea class="post" matInput placeholder="Post" [formControl]="postBody" [(ngModel)]="post.post"></textarea>
+          <mat-error *ngIf="postBody.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="button--container">
+        <button type="submit" class="button button--transparent button--login" [disabled]="isLoading">
+          <mat-spinner *ngIf="isLoading" [diameter]="16"></mat-spinner>
+          <span *ngIf="!isLoading">Make post</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

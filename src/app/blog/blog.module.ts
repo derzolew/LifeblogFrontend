@@ -52,10 +52,12 @@ import { MenuComponent } from './components/profile/menu/menu.component';
 import { HomeComponent } from './components/profile/home/home.component';
 import { MakePostComponent } from './components/profile/make-post/make-post.component';
 import { MyPostsComponent } from './components/profile/my-posts/my-posts.component';
+import { HomePostsComponent } from './home-posts/home-posts.component';
 
 const blogRoutes: Routes = [
   {
     path: '', component: HomepageComponent, children: [
+      {path: '', component: HomePostsComponent},
       {path: 'signup', component: SignupComponent},
       {path: 'signin', component: SigninComponent},
       {path: 'profile', pathMatch: 'full',  redirectTo: 'profile/home'},
@@ -126,7 +128,8 @@ const blogRoutes: Routes = [
     MenuComponent,
     HomeComponent,
     MakePostComponent,
-    MyPostsComponent
+    MyPostsComponent,
+    HomePostsComponent
   ]
 })
 export class BlogModule {

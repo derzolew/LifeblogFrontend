@@ -6,6 +6,8 @@ import { Profile } from '../model/profile.model';
 @Injectable()
 export class ProfileService {
 
+  readonly KEY_PROFILE_ID = 'profile_id';
+
   constructor(private apiService: ApiService) {
   }
 
@@ -15,5 +17,17 @@ export class ProfileService {
 
   public updateProfile(userId: number, profile: Profile) {
     return this.apiService.put(`profile/${userId}`, AuthorizationType.BEARER, profile);
+  }
+
+  public saveProfileIdToLocalStorage(profileId: number) {
+    window.localStorage.setItem(this.KEY_PROFILE_ID, profileId.toString());
+  }
+
+  public getProfileIdFromLocalStorage(): number {
+    const profileId = window.localStorage.getItem(this.KEY_PROFILE_ID);
+    if (profileId) {
+      return +profileId;
+    }
+    return null;
   }
 }

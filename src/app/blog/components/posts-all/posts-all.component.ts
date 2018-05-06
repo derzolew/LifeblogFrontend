@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Post } from '../../../core/model/post.model';
 
 @Component({
   selector: 'app-posts-all',
@@ -7,17 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostsAllComponent implements OnInit {
 
-  objects = [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-  ];
+  @Input()
+  posts: Post[];
 
   constructor() { }
 

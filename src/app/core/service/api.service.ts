@@ -54,7 +54,7 @@ export class ApiService {
   public post(url: string,
               authorizationType: AuthorizationType,
               body: any = {},
-              queryParams: HttpParams,
+              queryParams?: HttpParams,
               isUploadImage?: boolean): Observable<any> {
     return this.http.post(
       `${environment.baseURL}/${url}`,

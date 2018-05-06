@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Post } from '../../../core/model/post.model';
+import { AssetService } from '../../../core/service/asset.service';
 
 @Component({
   selector: 'app-post',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  post: Post;
+  avatarUrl: string;
+
+  constructor(private assetService: AssetService) {
+  }
 
   ngOnInit() {
   }
 
+  getAvatarImageUrl() {
+    if (this.post && this.post.profileDto && this.post.profileDto.photoName) {
+      return this.assetService.getImageUrl(this.post.profileDto.photoName);
+    }
+    return null;
+  }
+
+  getPostImageUrl() {
+    if (this.post && this.post.photoName) {
+      return this.assetService.getImageUrl(this.post.photoName);
+    }
+    return null;
+  }
 }

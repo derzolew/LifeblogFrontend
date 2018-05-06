@@ -1,0 +1,55 @@
+.container {
+  max-width: calc(1200px - 1rem);
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.image {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  object-fit: contain;
+}
+
+.image--container {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  margin-right: 3rem;
+  flex-shrink: 0;
+  background-color: #EEEEEE;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+}
+
+.upload {
+  width: inherit;
+  height: inherit;
+  opacity: 0;
+}
+
+.row {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.content {
+  display: flex;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.post {
+  min-height: 250px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 35px;
+  font-size: 20px;
+  text-decoration: underline;
+}

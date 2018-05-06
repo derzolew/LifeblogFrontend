@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { PostService } from '../../../../core/service/post.service';
+import { ProfileService } from '../../../../core/service/profile.service';
+import { Post } from '../../../../core/model/post.model';
+import { Page } from '../../../../core/model/page.model';
 
 @Component({
   selector: 'app-my-posts',
@@ -7,9 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyPostsComponent implements OnInit {
 
-  constructor() { }
+  posts: Post[];
+
+  constructor(private postService: PostService, private profileService: ProfileService) { }
 
   ngOnInit() {
+    this.postService.getAllPostsByProfileId(this.profileService.getProfileIdFromLocalStorage(), 0, 10000)
+      .subscribe((postsPage: Page<Post>) => {
+        this.posts = postsPage.items;
+      });
   }
 
 }

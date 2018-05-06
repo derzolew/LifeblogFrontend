@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Post } from '../../../../core/model/post.model';
+import { FormControl, Validators } from '@angular/forms';
+import { PostService } from '../../../../core/service/post.service';
+import { AssetService } from '../../../../core/service/asset.service';
+import { Asset } from '../../../../core/model/asset.model';
 
 @Component({
   selector: 'app-make-post',
@@ -7,9 +12,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MakePostComponent implements OnInit {
 
-  constructor() { }
+  post: Post = new Post();
+  isLoading = false;
+  title = new FormControl('', [Validators.required]);
+  postBody = new FormControl('', [Validators.required]);
+
+  constructor(private postService: PostService, private assetService: AssetService) { }
+
+  getErrorMessage() {
+
+  }
 
   ngOnInit() {
+  }
+
+  onMakePost() {
+    this.post.date = new Date();
+    this.postService.makePost(this.post).subscribe((post: Post) => {
+      console.log(post);
+    });
+  }
+
+
+  getImageUrl() {
+    if (this.post.photoName) {
+      return this.assetService.getImageUrl(this.post.photoName);
+    }
+    return null;
+  }
+
+  onPhotoUpload(event) {
+    if (event.target.files && event.target.files[0]) {
+      const photo = event.target.files[0];
+      this.assetService.uploadImage(photo).subscribe((asset: Asset) => {
+        if (asset) {
+          this.post.photoName = asset.fileName;
+          this.post.photoUrl = asset.url;
+        }
+      });
+    }
   }
 
 }

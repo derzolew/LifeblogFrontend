@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { WarningBlockComponent } from './components/warning-block/warning-block.component';
 import { ProfileService } from './service/profile.service';
 import { AssetService } from './service/asset.service';
+import { PostService } from './service/post.service';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { AssetService } from './service/asset.service';
     UserService,
     BlogService,
     ProfileService,
-    AssetService
+    AssetService,
+    PostService
   ],
   exports: [
     EqualValidator,
