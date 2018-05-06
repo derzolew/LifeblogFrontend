@@ -7,6 +7,8 @@ import { BlogService } from './service/blog.service';
 import { EqualValidator } from './directives/validate-equal';
 import { HttpClientModule } from '@angular/common/http';
 import { WarningBlockComponent } from './components/warning-block/warning-block.component';
+import { ProfileService } from './service/profile.service';
+import { AssetService } from './service/asset.service';
 
 @NgModule({
   imports: [
@@ -21,7 +23,9 @@ import { WarningBlockComponent } from './components/warning-block/warning-block.
     ApiService,
     TokenService,
     UserService,
-    BlogService
+    BlogService,
+    ProfileService,
+    AssetService
   ],
   exports: [
     EqualValidator,

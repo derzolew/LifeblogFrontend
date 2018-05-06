@@ -6,4 +6,6 @@ export class Profile {
   firstName: string;
   lastName: string;
   phoneNumber: string;
+  photoName: string;
+  photoUrl: string;
 }

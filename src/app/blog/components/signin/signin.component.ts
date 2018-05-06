@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { UserService } from '../../../core/service/user.service';
-import { UserCredentials } from '../../../core/model/user.model';
+import { User, UserCredentials } from '../../../core/model/user.model';
 import { OAuthTokenResponse } from '../../../core/model/oauth.model';
 import { TokenService } from '../../../core/service/token.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -36,6 +36,7 @@ export class SigninComponent implements OnInit {
     this.userService.authorize(this.user).subscribe((oAuthTokenResponse: OAuthTokenResponse) => {
       this.isLoading = false;
       this.tokenService.saveTokensToLocalStorage(oAuthTokenResponse);
+      this.getAndSetCurrentUserInfo();
       this.router.navigate(['/']);
       this.userService.userAuthorizedEventEmitter.emit(true);
     }, (error: HttpErrorResponse) => {
@@ -43,6 +44,13 @@ export class SigninComponent implements OnInit {
         this.loginError = true;
       }
       this.isLoading = false;
+    });
+  }
+
+  getAndSetCurrentUserInfo() {
+    this.userService.getCurrentUserInfo().subscribe((user: User) => {
+      console.log(user);
+      this.userService.saveUserInfoToLocalStorage(user);
     });
   }
 

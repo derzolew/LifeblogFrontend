@@ -11,8 +11,10 @@ export class ApiService {
   constructor(private http: HttpClient, private tokenService: TokenService) {
   }
 
-  private createHeaders(authorizationType: AuthorizationType): HttpHeaders {
-    const headers = {
+  private createHeaders(authorizationType: AuthorizationType, isUploadImage?: boolean): HttpHeaders {
+    const headers = isUploadImage ? {
+      'Accept': 'application/json'
+    } : {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     };
@@ -25,7 +27,7 @@ export class ApiService {
       }
 
       case AuthorizationType.BEARER: {
-        headers['Authorization'] = `Bearer ${this.tokenService.getAccessToken()}`;
+        headers['Authorization'] = `Bearer ${this.tokenService.getTokenDetails().access_token}`;
         break;
       }
 
@@ -51,13 +53,14 @@ export class ApiService {
 
   public post(url: string,
               authorizationType: AuthorizationType,
-              body: Object = {},
-              queryParams: HttpParams): Observable<any> {
+              body: any = {},
+              queryParams: HttpParams,
+              isUploadImage?: boolean): Observable<any> {
     return this.http.post(
       `${environment.baseURL}/${url}`,
-      authorizationType !== AuthorizationType.BASIC ? JSON.stringify(body) : body,
+      authorizationType !== AuthorizationType.BASIC && !isUploadImage ? JSON.stringify(body) : body,
       {
-        headers: this.createHeaders(authorizationType),
+        headers: this.createHeaders(authorizationType, isUploadImage),
         params: queryParams
       }).pipe(catchError(this.handleError.bind(this)));
   }

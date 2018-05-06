@@ -10,6 +10,7 @@ import { OAuthTokenResponse } from '../model/oauth.model';
 export class UserService {
 
   public userAuthorizedEventEmitter = new EventEmitter<boolean>();
+  public readonly KEY_USER_INFO = 'user_info';
 
   constructor(private apiService: ApiService, private tokenService: TokenService) { }
 
@@ -23,7 +24,18 @@ export class UserService {
   }
 
   public getCurrentUserInfo(): Observable<User> {
-    return this.apiService.get('/user/current', AuthorizationType.BEARER);
+    return this.apiService.get('user/current', AuthorizationType.BEARER);
+  }
+
+  public saveUserInfoToLocalStorage(userInfo: User) {
+    window.localStorage.setItem(this.KEY_USER_INFO, JSON.stringify(userInfo));
+  }
+
+  public getUserInfoFromLocalStorage(): User | null {
+    if (window.localStorage.getItem(this.KEY_USER_INFO)) {
+      return JSON.parse(window.localStorage.getItem(this.KEY_USER_INFO));
+    }
+    return null;
   }
 
   public signUp(userCredentials: UserCredentials): Observable<User> {

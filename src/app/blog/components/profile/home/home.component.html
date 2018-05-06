@@ -1,34 +1,85 @@
-<div class="container">
+<div class="container" *ngIf="!isEditing">
   <div class="image--container">
-
+    <img *ngIf="getImageUrl()" [src]="getImageUrl()" class="image">
   </div>
 
   <div class="content">
-    <div class="row">
-      <div class="name">Maksim Vilcheuski</div>
+    <div class="row space-between">
+      <div class="name">{{profile?.firstName}} {{profile?.lastName}}</div>
+      <div class="edit" (click)="onEdit()">Edit</div>
     </div>
 
     <div class="row">
       <div class="label">Birthday:</div>
-      <div class="value">22 August 1997</div>
+      <div class="value">{{profile?.birthday | date}}</div>
     </div>
 
     <div class="row">
       <div class="label">Phone:</div>
-      <div class="value">+375297877018</div>
+      <div class="value">{{profile?.phoneNumber}}</div>
     </div>
 
     <div class="row">
       <div class="label">About me:</div>
       <div class="description">
-        <pre>   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae illo, porro? Architecto cum esse illo maxime nam, necessitatibus omnis perferendis repudiandae saepe, sapiente ullam, unde? Dicta eius incidunt nesciunt numquam.
-
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus adipisci aut corporis, culpa dolorum eligendi error est eum facilis harum illum iusto laborum minima nulla, perferendis qui recusandae veniam!
-
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda autem cum ducimus error ex, exercitationem, facilis ipsa libero maiores molestiae mollitia nisi perspiciatis porro quia, repellendus tempore temporibus voluptas! Quaerat.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias autem beatae blanditiis delectus enim eveniet harum impedit iusto nam natus necessitatibus, nesciunt pariatur possimus quia reprehenderit saepe suscipit, voluptatibus!
-        </pre>
+        <pre>{{profile?.description}}</pre>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="isEditing">
+  <div class="image--container">
+    <img *ngIf="getImageUrl()" [src]="getImageUrl()" class="image">
+    <input class="upload" type="file" accept="image/*" (change)="onPhotoUpload($event)">
+  </div>
+
+  <div class="content content--edit">
+
+    <form #f="ngForm" (submit)="f.form.valid && onSave()">
+      <div class="row">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="First name" [formControl]="firstName" [(ngModel)]="profile.firstName" required>
+          <mat-error *ngIf="firstName.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Last name" [formControl]="lastName" [(ngModel)]="profile.lastName" required>
+          <mat-error *ngIf="lastName.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="picker" placeholder="Your birthday" [formControl]="birthday">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker  touchUi="true" #picker (selectedChanged)="onDateChanged($event)"></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Phone" [formControl]="phoneNumber" [(ngModel)]="profile.phoneNumber" required>
+          <mat-error *ngIf="phoneNumber.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="full-width">
+          <textarea matInput placeholder="About me" [formControl]="aboutMe" [(ngModel)]="profile.description"></textarea>
+          <mat-error *ngIf="aboutMe.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="button--container">
+        <button type="submit" class="button button--transparent button--login" [disabled]="isLoading">
+          <mat-spinner *ngIf="isLoading" [diameter]="16"></mat-spinner>
+          <span *ngIf="!isLoading">Save</span>
+        </button>
+      </div>
+    </form>
+
   </div>
 </div>
