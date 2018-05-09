@@ -17,3 +17,13 @@ pre {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+
+.post-content {
+  text-overflow: ellipsis;
+  max-height: 97px;
+  overflow: hidden;
+}
+
+.holder:hover {
+  cursor: pointer;
+}

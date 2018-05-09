@@ -60,6 +60,7 @@ const blogRoutes: Routes = [
       {path: '', component: HomePostsComponent},
       {path: 'signup', component: SignupComponent},
       {path: 'signin', component: SigninComponent},
+      {path: 'post/:id', component: PostComponent},
       {path: 'profile', pathMatch: 'full',  redirectTo: 'profile/home'},
       {
         path: 'profile', component: ProfileComponent, children: [

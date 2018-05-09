@@ -4,6 +4,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { PostService } from '../../../../core/service/post.service';
 import { AssetService } from '../../../../core/service/asset.service';
 import { Asset } from '../../../../core/model/asset.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-make-post',
@@ -17,7 +18,9 @@ export class MakePostComponent implements OnInit {
   title = new FormControl('', [Validators.required]);
   postBody = new FormControl('', [Validators.required]);
 
-  constructor(private postService: PostService, private assetService: AssetService) { }
+  constructor(private postService: PostService,
+              private router: Router,
+              private assetService: AssetService) { }
 
   getErrorMessage() {
 
@@ -29,7 +32,7 @@ export class MakePostComponent implements OnInit {
   onMakePost() {
     this.post.date = new Date();
     this.postService.makePost(this.post).subscribe((post: Post) => {
-      console.log(post);
+      this.router.navigate(['profile', 'my-posts']);
     });
   }
 

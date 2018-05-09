@@ -27,4 +27,12 @@ export class PostService {
       .append('size', size.toString());
     return this.apiService.get(`post/all/${profileId}`, AuthorizationType.NONE, query);
   }
+
+  public getPostById(postId: number): Observable<Post> {
+    return this.apiService.get(`post/${postId}`, AuthorizationType.NONE);
+  }
+
+  public likePost(postId: number): Observable<Post> {
+    return this.apiService.put(`post/${postId}`, AuthorizationType.BEARER);
+  }
 }
